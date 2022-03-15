@@ -34,7 +34,7 @@
 		18BEDF9827D8DFA600245155 /* MarvelUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BEDF9727D8DFA600245155 /* MarvelUITestsLaunchTests.swift */; };
 		18BEDFBD27D8E07A00245155 /* StoryboardAccessors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BEDFA627D8E07900245155 /* StoryboardAccessors.swift */; };
 		18BEDFBF27D8E07A00245155 /* ViewControllerAccessors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BEDFA827D8E07900245155 /* ViewControllerAccessors.swift */; };
-		18BEDFC627D8E07A00245155 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BEDFB427D8E07A00245155 /* UIView.swift */; };
+		18BEDFC627D8E07A00245155 /* UIView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BEDFB427D8E07A00245155 /* UIView+Additions.swift */; };
 		18BEDFCC27D8E07A00245155 /* HttpUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BEDFBC27D8E07A00245155 /* HttpUtility.swift */; };
 		18E0E98E27DCF14B006D327A /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E0E98D27DCF14B006D327A /* ImageManager.swift */; };
 		18E0E99027DCF3B4006D327A /* URLRetriever.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E0E98F27DCF3B4006D327A /* URLRetriever.swift */; };
@@ -101,7 +101,7 @@
 		18BEDF9727D8DFA600245155 /* MarvelUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		18BEDFA627D8E07900245155 /* StoryboardAccessors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardAccessors.swift; sourceTree = "<group>"; };
 		18BEDFA827D8E07900245155 /* ViewControllerAccessors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerAccessors.swift; sourceTree = "<group>"; };
-		18BEDFB427D8E07A00245155 /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		18BEDFB427D8E07A00245155 /* UIView+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Additions.swift"; sourceTree = "<group>"; };
 		18BEDFBC27D8E07A00245155 /* HttpUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpUtility.swift; sourceTree = "<group>"; };
 		18E0E98D27DCF14B006D327A /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
 		18E0E98F27DCF3B4006D327A /* URLRetriever.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRetriever.swift; sourceTree = "<group>"; };
@@ -201,7 +201,7 @@
 				18BEDFB227D8E07A00245155 /* Extensions */,
 				18BEDFA427D8E07900245155 /* Resources */,
 				18BEDFBB27D8E07A00245155 /* Service Helper */,
-				18BEDFB127D8E07A00245155 /* MVVM */,
+				18BEDFB127D8E07A00245155 /* Scenes */,
 				18BEDFBA27D8E07A00245155 /* Storyboard */,
 				18BEDF7D27D8DFA600245155 /* Assets.xcassets */,
 				18BEDF8227D8DFA600245155 /* Info.plist */,
@@ -257,19 +257,19 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
-		18BEDFB127D8E07A00245155 /* MVVM */ = {
+		18BEDFB127D8E07A00245155 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
 				18E0E9AB27DD76BE006D327A /* MarvelCharacterDetail */,
 				18E0E99927DD7652006D327A /* MarvelCharactersList */,
 			);
-			path = MVVM;
+			path = Scenes;
 			sourceTree = "<group>";
 		};
 		18BEDFB227D8E07A00245155 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				18BEDFB427D8E07A00245155 /* UIView.swift */,
+				18BEDFB427D8E07A00245155 /* UIView+Additions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -554,7 +554,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18E0E98E27DCF14B006D327A /* ImageManager.swift in Sources */,
-				18BEDFC627D8E07A00245155 /* UIView.swift in Sources */,
+				18BEDFC627D8E07A00245155 /* UIView+Additions.swift in Sources */,
 				18E0E9B927DD77E3006D327A /* CharacterDetailInfoCVCell.swift in Sources */,
 				18BEDF7227D8DFA300245155 /* AppDelegate.swift in Sources */,
 				18ACA2F127DF5A4000008A1D /* ComicListViewModel.swift in Sources */,
