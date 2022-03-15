@@ -48,7 +48,6 @@ class ComicsListViewModel {
         return ComicListsCellViewModel(comicId: comicId, comicName: comicTitle, comicDescription: comicDescription, characterImageUrl: comicImagePath)
     }
     
-    
     func getCurrentComicCellViewModel(at indexPath: IndexPath) -> ComicListsCellViewModel {
             return comicListCellViewModels[indexPath.row]
     }

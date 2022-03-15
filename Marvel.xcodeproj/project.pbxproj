@@ -33,9 +33,7 @@
 		18BEDF9627D8DFA600245155 /* MarvelUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BEDF9527D8DFA600245155 /* MarvelUITests.swift */; };
 		18BEDF9827D8DFA600245155 /* MarvelUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BEDF9727D8DFA600245155 /* MarvelUITestsLaunchTests.swift */; };
 		18BEDFBD27D8E07A00245155 /* StoryboardAccessors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BEDFA627D8E07900245155 /* StoryboardAccessors.swift */; };
-		18BEDFBE27D8E07A00245155 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BEDFA727D8E07900245155 /* AppConstants.swift */; };
 		18BEDFBF27D8E07A00245155 /* ViewControllerAccessors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BEDFA827D8E07900245155 /* ViewControllerAccessors.swift */; };
-		18BEDFC427D8E07A00245155 /* API Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BEDFB027D8E07900245155 /* API Endpoints.swift */; };
 		18BEDFC627D8E07A00245155 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BEDFB427D8E07A00245155 /* UIView.swift */; };
 		18BEDFCC27D8E07A00245155 /* HttpUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BEDFBC27D8E07A00245155 /* HttpUtility.swift */; };
 		18E0E98E27DCF14B006D327A /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E0E98D27DCF14B006D327A /* ImageManager.swift */; };
@@ -102,9 +100,7 @@
 		18BEDF9527D8DFA600245155 /* MarvelUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelUITests.swift; sourceTree = "<group>"; };
 		18BEDF9727D8DFA600245155 /* MarvelUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		18BEDFA627D8E07900245155 /* StoryboardAccessors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardAccessors.swift; sourceTree = "<group>"; };
-		18BEDFA727D8E07900245155 /* AppConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		18BEDFA827D8E07900245155 /* ViewControllerAccessors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerAccessors.swift; sourceTree = "<group>"; };
-		18BEDFB027D8E07900245155 /* API Endpoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "API Endpoints.swift"; sourceTree = "<group>"; };
 		18BEDFB427D8E07A00245155 /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		18BEDFBC27D8E07A00245155 /* HttpUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpUtility.swift; sourceTree = "<group>"; };
 		18E0E98D27DCF14B006D327A /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
@@ -240,7 +236,6 @@
 				18E0E98C27DCF13A006D327A /* HelperClass */,
 				18BEDFA527D8E07900245155 /* Constants */,
 				18BEDFAD27D8E07900245155 /* Fonts */,
-				18BEDFAF27D8E07900245155 /* API Endpoints */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -249,7 +244,6 @@
 			isa = PBXGroup;
 			children = (
 				18BEDFA627D8E07900245155 /* StoryboardAccessors.swift */,
-				18BEDFA727D8E07900245155 /* AppConstants.swift */,
 				18BEDFA827D8E07900245155 /* ViewControllerAccessors.swift */,
 			);
 			path = Constants;
@@ -261,14 +255,6 @@
 				18ACBA3E27D9F8EC004D471F /* Marvel-Regular.ttf */,
 			);
 			path = Fonts;
-			sourceTree = "<group>";
-		};
-		18BEDFAF27D8E07900245155 /* API Endpoints */ = {
-			isa = PBXGroup;
-			children = (
-				18BEDFB027D8E07900245155 /* API Endpoints.swift */,
-			);
-			path = "API Endpoints";
 			sourceTree = "<group>";
 		};
 		18BEDFB127D8E07A00245155 /* MVVM */ = {
@@ -569,7 +555,6 @@
 			files = (
 				18E0E98E27DCF14B006D327A /* ImageManager.swift in Sources */,
 				18BEDFC627D8E07A00245155 /* UIView.swift in Sources */,
-				18BEDFBE27D8E07A00245155 /* AppConstants.swift in Sources */,
 				18E0E9B927DD77E3006D327A /* CharacterDetailInfoCVCell.swift in Sources */,
 				18BEDF7227D8DFA300245155 /* AppDelegate.swift in Sources */,
 				18ACA2F127DF5A4000008A1D /* ComicListViewModel.swift in Sources */,
@@ -578,7 +563,6 @@
 				18E0E9A827DD7652006D327A /* CharactersListVc.swift in Sources */,
 				18E0E9A727DD7652006D327A /* CharactersListResponse.swift in Sources */,
 				18A932E627DB59A700706D25 /* Authenticator.swift in Sources */,
-				18BEDFC427D8E07A00245155 /* API Endpoints.swift in Sources */,
 				18ACA2F527DF6A0900008A1D /* CharactersListCellViewModel.swift in Sources */,
 				18ACA2EF27DF507400008A1D /* ComicsListResponse.swift in Sources */,
 				18E0E9B727DD77CB006D327A /* CharacterDetailInfoTVCell.swift in Sources */,

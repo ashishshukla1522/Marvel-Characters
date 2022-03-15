@@ -25,22 +25,6 @@ struct HttpUtility {
                 }
             }
         }.resume()
-//        URLSession.shared.dataTask(with: requestUrl) { (responseData, httpUrlResponse, error) in
-//            if(error == nil && responseData != nil && responseData?.count != 0)
-//            {
-//
-//                print(dataToJSON(data: responseData!) as Any)
-//                let decoder = JSONDecoder()
-//                do {
-//                    let result = try decoder.decode(T.self, from: responseData!)
-//                    _ = completionHandler(result)
-//                }
-//                catch let error{
-//                    debugPrint("error occured while decoding = \(error.localizedDescription)")
-//                }
-//            }
-//
-//        }.resume()
     }
     
     func dataToJSON(data: Data) -> Any? {
