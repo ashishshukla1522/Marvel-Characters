@@ -17,8 +17,7 @@ class ImageManagerUnitTest: XCTestCase {
         let expectations = self.expectation(description: "ValidUrl_Returns_ValidImage")
         
         //Act
-        imageManager.downloadImageFromUrl(url: URL(string: dummyUrl)!) { image in
-            //Assert
+        imageManager.getImageFrom(url: URL(string: dummyUrl)!) { image, url in
             XCTAssertNotNil(image)
             expectations.fulfill()
         }
@@ -33,8 +32,7 @@ class ImageManagerUnitTest: XCTestCase {
         let expectations = self.expectation(description: "InValidUrl_Returns_ValidImage")
         
         //Act
-        imageManager.downloadImageFromUrl(url: URL(string: dummyUrl)!) { image in
-            //Assert
+        imageManager.getImageFrom(url: URL(string: dummyUrl)!) { image, url in            //Assert
             XCTAssertNil(image)
             expectations.fulfill()
         }
@@ -49,8 +47,7 @@ class ImageManagerUnitTest: XCTestCase {
         let expectations = self.expectation(description: "ValidUrl_Returns_ValidImage")
         
         //Act
-        imageManager.downloadImageFromUrl(url: URL(string: dummyUrl)!) { image in
-            
+        imageManager.getImageFrom(url: URL(string: dummyUrl)!) { image, url in
             imageManager.saveImageInCache(image: image, forkey: "testImage")
             expectations.fulfill()
         }

@@ -15,7 +15,7 @@ class CharactersListAPIUnitTest: XCTestCase {
         let resource = CharactersListResource()
         let expectations =  self.expectation(description: "ValidParameters_Returns_CharactersListResponse")
         //Act
-        resource.fetchCharactersList(isHud: true, currentOffSet: 0) { result in
+        resource.fetchCharactersList(isHud: true, currentOffSet: 0) { result,error  in
             //Assert
             XCTAssertNotNil(result)
             XCTAssertEqual("Ok", result?.status)
@@ -31,13 +31,12 @@ class CharactersListAPIUnitTest: XCTestCase {
         let expectations =  self.expectation(description: "InValidParameters_Returns_Error")
         
         //Act
-        resource.fetchCharactersList(isHud: true, currentOffSet: -1) { result in
+        resource.fetchCharactersList(isHud: true, currentOffSet: -1) { result,error  in
             
             //Assert
-            XCTAssertNil(result?.data)
+            XCTAssertNil(error)
             XCTAssertEqual(500, result?.code)
             XCTAssertEqual("Internal Server Error", result?.status)
-            XCTAssertNotEqual(result?.code, 200)
             expectations.fulfill()
         }
         waitForExpectations(timeout: 5, handler: nil)

@@ -8,7 +8,7 @@
 import Foundation
 
 protocol ComicsListViewModelDelegate {
-    func didRecieveComicsList(response: ComicListResponse)
+    func didRecieveComicsList(response: ComicListResponse?, error:ErrorType?)
 }
 
 class ComicsListViewModel {
@@ -19,24 +19,20 @@ class ComicsListViewModel {
     
     var reloadDetailTableView: (() -> Void)?
     
-    var comicList : ComicListResponse?
-    
     var comicListCellViewModels = [ComicListsCellViewModel]() {
         didSet {
             reloadDetailTableView?()
         }
     }
-
+    
     init(comicListRepository: ComicListRepository = ComicsListResource() , _delegate:ComicsListViewModelDelegate) {
         self.delegate = _delegate
         self.comicListRepository = comicListRepository
     }
     
-     func fetchComics(comiclists: ComicListResponse) {
-         comicList = comiclists // Cache
-         comicList?.data?.results?.forEach({ comic in
-             comicListCellViewModels.append(createComicCellModel(comic: comic))
-         })
+    func fetchComics(comiclists: ComicListResponse) {
+        let comics = comiclists.data?.results?.map({ createComicCellModel(comic: $0) }) ?? []
+        comicListCellViewModels.append(contentsOf: comics)
     }
     
     func createComicCellModel(comic: ComicInfo) -> ComicListsCellViewModel {
@@ -45,19 +41,22 @@ class ComicsListViewModel {
         let comicDescription = comic.resultDescription
         let comicImagePath = comic.thumbnail?.fullPath
         
-        return ComicListsCellViewModel(comicId: comicId, comicName: comicTitle, comicDescription: comicDescription, characterImageUrl: comicImagePath)
+        return ComicListsCellViewModel(comicId: comicId, comicName: comicTitle, comicDescription: comicDescription, comicImageUrl: comicImagePath)
     }
     
     func getCurrentComicCellViewModel(at indexPath: IndexPath) -> ComicListsCellViewModel {
-            return comicListCellViewModels[indexPath.row]
+        return comicListCellViewModels[indexPath.row]
     }
     
     func fetchComicsList(characterId:Int){
-            let resource = ComicsListResource()
-        resource.fetchComicsList(isHud: true, currentOffSet: 0, characterId: String(characterId)) { (apiResponse) in
-            if apiResponse?.code == 200 {
-                self.delegate.didRecieveComicsList(response: apiResponse!)
+        let resource = ComicsListResource()
+        resource.fetchComicsList(isHud: true, currentOffSet: 0, characterId: String(characterId)) { (apiResponse,error) in
+            if apiResponse?.code == 200 && error == nil {
+                self.delegate.didRecieveComicsList(response: apiResponse!, error: nil)
                 self.fetchComics(comiclists: apiResponse!)
+            }else {
+                self.delegate.didRecieveComicsList(response: nil, error: error)
+
             }
         }
     }

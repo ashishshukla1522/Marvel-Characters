@@ -7,17 +7,21 @@
 
 import Foundation
 protocol CharactersListRepository {
-    func fetchCharactersList(isHud:Bool,currentOffSet:Int, completion : @escaping (_ result: CharactersListResponse?) -> Void)
+    func fetchCharactersList(isHud:Bool,currentOffSet:Int, completion : @escaping (_ result: CharactersListResponse?,_ error:ErrorType?) -> Void)
 }
 
 struct CharactersListResource : CharactersListRepository {
     
-    func fetchCharactersList(isHud:Bool,currentOffSet:Int, completion : @escaping (_ result: CharactersListResponse?) -> Void) {
+    func fetchCharactersList(isHud:Bool,currentOffSet:Int, completion : @escaping (_ result: CharactersListResponse?,_ error:ErrorType?) -> Void) {
         let urlRequest = URLRetriever.marverlCharacters(offset: currentOffSet).generateUrlRequest()
-        let httpUtility = HttpUtility()
-            httpUtility.getApiData(requestUrl: urlRequest, resultType: CharactersListResponse.self) { (apiResponse) in
-                _ = completion(apiResponse)
+        HttpUtility.getApiData(requestUrl: urlRequest, resultType: CharactersListResponse.self) { (apiResponse,error)  in
+            if error == nil {
+                completion(apiResponse, nil)
+            }else {
+                completion(nil, error)
             }
+            
+        }
     }
-
+    
 }

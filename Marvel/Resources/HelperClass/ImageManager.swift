@@ -13,9 +13,14 @@ class ImageManager {
     
     let imageCache = NSCache<AnyObject,AnyObject>()
     
-    func downloadImageFromUrl(url: URL, completion: @escaping (UIImage?) -> Void) {
-        ImageRequestManager.shared.getImageData(thumbnailURL: URLRequest(url: url)) { imageData, error in
-            completion(imageData != nil ? UIImage(data: imageData!) : nil)
+    func getImageFrom(url: URL, completion: @escaping (UIImage?,String? ) -> Void) {
+        if let image = imageForKey(key: url.absoluteString) {
+            completion(image, url.absoluteString)
+        } else {
+            ImageRequestManager.shared.getImageData(thumbnailURL: URLRequest(url: url)) { [weak self] imageData, error in
+                self?.saveImageInCache(image: UIImage(data: imageData!), forkey: url.absoluteString)
+                completion(imageData != nil ? UIImage(data: imageData!) : nil, url.absoluteString)
+            }
         }
         
     }

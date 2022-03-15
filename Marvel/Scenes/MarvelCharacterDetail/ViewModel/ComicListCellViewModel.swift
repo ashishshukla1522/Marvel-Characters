@@ -11,6 +11,6 @@ struct ComicListsCellViewModel {
     let comicId : Int?
     let comicName : String?
     let comicDescription : String?
-    let characterImageUrl : String?
+    let comicImageUrl : String?
     
 }

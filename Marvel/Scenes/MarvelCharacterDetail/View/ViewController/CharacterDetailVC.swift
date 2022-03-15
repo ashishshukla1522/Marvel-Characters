@@ -19,7 +19,7 @@ class CharacterDetailVC: UIViewController {
     lazy var comicslistViewModel = {
         ComicsListViewModel(_delegate: self)
     }()
-
+    
     
     var imageManager = ImageManager()
     var activityIndicator = UIActivityIndicatorView()
@@ -31,5 +31,5 @@ class CharacterDetailVC: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
+    
 }

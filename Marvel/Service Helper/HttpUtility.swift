@@ -8,7 +8,7 @@
 import Foundation
 
 struct HttpUtility {
-    func getApiData<T:Decodable>(requestUrl: URLRequest, resultType: T.Type, completionHandler:@escaping(_ result: T?)-> Void)
+    static func getApiData<T:Decodable>(requestUrl: URLRequest, resultType: T.Type, completionHandler:@escaping(_ result: T?, _ _error: ErrorType?)-> Void)
     {
         URLSession.shared.dataTask(with: requestUrl) { (responseData, httpUrlResponse, error) in
             if(error == nil && responseData != nil && responseData?.count != 0)
@@ -18,23 +18,26 @@ struct HttpUtility {
                 let decoder = JSONDecoder()
                 do {
                     let result = try decoder.decode(T.self, from: responseData!)
-                    _ = completionHandler(result)
+                    completionHandler(result, nil)
                 }
                 catch let error{
+                    completionHandler(nil, .ParsingError)
                     debugPrint("error occured while decoding = \(error.localizedDescription)")
                 }
+            }else {
+                completionHandler(nil,.ErrorInFetchingDataFromServer)
             }
         }.resume()
     }
     
-    func dataToJSON(data: Data) -> Any? {
-       do {
-           return try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
-       } catch let myJSONError {
-           print(myJSONError)
-       }
-       return nil
+    static func dataToJSON(data: Data) -> Any? {
+        do {
+            return try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
+        } catch let myJSONError {
+            print(myJSONError)
+        }
+        return nil
     }
     // MARK: Show progress hud
-
+    
 }

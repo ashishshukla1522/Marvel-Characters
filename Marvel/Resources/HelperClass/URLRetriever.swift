@@ -17,6 +17,13 @@ enum URLRetriever  {
     case marvelCharacterDetails(charcaterId:String)
     case comics(characterId:String)
     
+    var httpMethod: HTTPMethods {
+        switch self {
+        case .marverlCharacters,.marvelCharacterDetails,.comics:
+            return .get
+        }
+    }
+    
     var path : String {
         switch self {
         case .marverlCharacters:
@@ -32,7 +39,7 @@ enum URLRetriever  {
         var parametrs = requiredParameters()
         switch self {
         case .marverlCharacters(let offset):
-                parametrs["offset"] = offset
+            parametrs["offset"] = offset
             return parametrs
         case .marvelCharacterDetails, .comics:
             return parametrs
@@ -46,7 +53,7 @@ enum URLRetriever  {
             URLQueryItem(name: $0.key, value: $0.value is String ? $0.value as! String : String($0.value as! Int))
         }
         var urlRequest = URLRequest(url: urlComponents?.url ?? URL(string: URLRetriever.baseUrl)!)
-        urlRequest.httpMethod = "GET"
+        urlRequest.httpMethod = httpMethod.rawValue
         return urlRequest
     }
     

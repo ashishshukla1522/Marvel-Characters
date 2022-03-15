@@ -8,7 +8,7 @@
 import Foundation
 
 protocol CharactersListViewModelDelegate {
-    func didRecieveCharactersList(response: CharactersListResponse)
+    func didRecieveCharactersList(response: CharactersListResponse?,error:ErrorType?)
 }
 
 class CharactersListViewModel {
@@ -18,8 +18,6 @@ class CharactersListViewModel {
     
     var reloadTableView: (() -> Void)?
     
-    var marvelCharacters : CharactersListResponse?
-    
     var currentOffset : Int?
     var totalData : Int?
     var limit : Int?
@@ -27,7 +25,6 @@ class CharactersListViewModel {
     var marvelCharacterCellViewModels = [CharactersListCellViewModel]() {
         didSet {
             reloadTableView?()
-            
         }
     }
     
@@ -36,12 +33,9 @@ class CharactersListViewModel {
         self.characterListRepository = characterListRepository
     }
     
-     func fetchCharacters(marvelcharacters: CharactersListResponse) {
-        marvelCharacters = marvelcharacters 
-        marvelCharacters?.data?.results?.forEach { marverlCharacter in
-            marvelCharacterCellViewModels.append(createCellModel(marverlcharacter: marverlCharacter))
-        }
-        
+    func fetchCharacters(marvelcharacters: CharactersListResponse) {
+        let characters = marvelcharacters.data?.results?.map({ createCellModel(marverlcharacter: $0) }) ?? []
+        marvelCharacterCellViewModels.append(contentsOf: characters)
     }
     
     func createCellModel(marverlcharacter: CharactersInfo) -> CharactersListCellViewModel {
@@ -55,17 +49,19 @@ class CharactersListViewModel {
     
     func fetchCharactersList(offSet:Int){
         let resource = CharactersListResource()
-        resource.fetchCharactersList(isHud: true, currentOffSet: offSet) { (apiResponse) in
-            if apiResponse?.code == 200 {
-                self.delegate.didRecieveCharactersList(response: apiResponse!)
+        resource.fetchCharactersList(isHud: true, currentOffSet: offSet) { (apiResponse,error)  in
+            if apiResponse?.code == 200 && error == nil{
+                self.delegate.didRecieveCharactersList(response: apiResponse!, error: nil)
                 self.fetchCharacters(marvelcharacters: apiResponse!)
+            }else {
+                self.delegate.didRecieveCharactersList(response: nil, error: error)
             }
         }
     }
     
     func getCurrentCellViewModel(at indexPath: IndexPath) -> CharactersListCellViewModel {
-            return marvelCharacterCellViewModels[indexPath.row]
-        }
+        return marvelCharacterCellViewModels[indexPath.row]
+    }
 }
 
 

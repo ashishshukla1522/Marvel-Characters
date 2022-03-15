@@ -15,7 +15,7 @@ class ComicListsAPIUnitTest: XCTestCase {
         let expectations =  self.expectation(description: "ValidParameters_Returns_ComicListResponse")
         
         //Act
-        resource.fetchComicsList(isHud: true, currentOffSet: 0, characterId: String(1011334)) { result in
+        resource.fetchComicsList(isHud: true, currentOffSet: 0, characterId: String(1011334)) { result,error  in
             //Assert
             XCTAssertNotNil(result)
             XCTAssertEqual("Ok", result?.status)
@@ -31,7 +31,7 @@ class ComicListsAPIUnitTest: XCTestCase {
         let expectations =  self.expectation(description: "InValidParameters_Returns_ComicListResponse")
         
         //Act
-        resource.fetchComicsList(isHud: true, currentOffSet: 0, characterId: String(888888)) { result in
+        resource.fetchComicsList(isHud: true, currentOffSet: 0, characterId: String(888888)) { result,error  in
             //Assert
             XCTAssertNotNil(result)
             XCTAssertEqual("Ok", result?.status)

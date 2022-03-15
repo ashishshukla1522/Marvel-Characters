@@ -31,7 +31,7 @@ struct ComicInfo : Codable {
         case resultDescription = "description"
         case thumbnail
     }
-  
+    
 }
 
 // MARK: - Thumbnail

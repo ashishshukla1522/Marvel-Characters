@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import CryptoKit
 
 //MARK: Initial SetUp
 extension CharacterDetailVC {
@@ -20,20 +21,23 @@ extension CharacterDetailVC {
     }
     
     fileprivate func setImageForCharacter() {
-        if let thumbNailImage = imageManager.imageForKey(key: String(selectedCharacterInfo?.characterId ?? 0)) {
-            self.characterImageView.image = thumbNailImage
+        guard let characterURL = selectedCharacterInfo?.characterImageUrl else {
             return
         }
-        if let imagePath = selectedCharacterInfo?.characterImageUrl, let thumbnailUrl = URL(string: imagePath) {
-            imageManager.downloadImageFromUrl(url: thumbnailUrl) { image in
-                self.imageManager.saveImageInCache(image: image, forkey: String(self.selectedCharacterInfo?.characterId ?? 0))
+        
+        if let thumbnailUrl = URL(string: characterURL) {
+            imageManager.getImageFrom(url: thumbnailUrl) { image, urlString in
+                self.imageManager.saveImageInCache(image: image, forkey: characterURL)
                 DispatchQueue.main.async {
-                    self.characterImageView.image = image
+                    if characterURL == urlString {
+                        self.characterImageView.image = image
+                    }
                 }
             }
         }
+        
     }
-
+    
 }
 
 
@@ -52,7 +56,7 @@ extension CharacterDetailVC : UITableViewDelegate, UITableViewDataSource {
             characterInfoCell.characterNameLabel.text = selectedCharacterInfo?.characterName
             characterInfoCell.characterDetailLabel.text = selectedCharacterInfo?.characterDescription ?? "Description is unavailable that is why showing dummy text"
             return characterInfoCell
-        
+            
         default:
             guard let comicListCell = tableView.dequeueReusableCell(withIdentifier: "CharacterDetailInfoTVCell", for: indexPath) as? CharacterDetailInfoTVCell else {
                 return UITableViewCell()
@@ -61,9 +65,7 @@ extension CharacterDetailVC : UITableViewDelegate, UITableViewDataSource {
             comicListCell.characterDetailTitleLabel.text = "Comics"
             return comicListCell
         }
-    }
-    
-    
+    }    
 }
 
 //MARK: UICollectionView Delegate and DataSource Methods
@@ -82,18 +84,18 @@ extension CharacterDetailVC : UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        let comic = comicLists?.data?.results?[indexPath.row]
-
-        if let thumbNailImage = imageManager.imageForKey(key: String(comic?.id ?? 0)) {
-            (cell as? CharacterDetailInfoCVCell)?.characterDetailImagview.image = thumbNailImage
+        
+        guard let characterURL = comicslistViewModel.comicListCellViewModels[indexPath.row].comicImageUrl else {
             return
         }
         
-        if let imagePath = comic?.thumbnail?.fullPath, let thumbnailUrl = URL(string: imagePath) {
-            imageManager.downloadImageFromUrl(url: thumbnailUrl) { image in
-                self.imageManager.saveImageInCache(image: image, forkey: String(comic?.id ?? 0))
+        if let thumbnailUrl = URL(string: characterURL) {
+            imageManager.getImageFrom(url: thumbnailUrl) { image, urlString in
+                self.imageManager.saveImageInCache(image: image, forkey: characterURL)
                 DispatchQueue.main.async {
-                    (cell as? CharacterDetailInfoCVCell)?.characterDetailImagview.image = image
+                    if characterURL == urlString {
+                        (cell as? CharacterDetailInfoCVCell)?.characterDetailImagview.image = image
+                    }
                 }
             }
         }
@@ -102,13 +104,20 @@ extension CharacterDetailVC : UICollectionViewDelegate, UICollectionViewDataSour
 
 //MARK: ComicListViewModel Delegate Methods
 extension CharacterDetailVC : ComicsListViewModelDelegate {
-    func didRecieveComicsList(response: ComicListResponse) {
-        comicLists = response
-        comicslistViewModel.reloadDetailTableView = { [weak self] in
-            DispatchQueue.main.async {
-                self?.characterDetailTableView.reloadData()
+    
+    
+    func didRecieveComicsList(response: ComicListResponse?, error: ErrorType?) {
+        if error == nil {
+            comicLists = response
+            comicslistViewModel.reloadDetailTableView = { [weak self] in
+                DispatchQueue.main.async {
+                    self?.characterDetailTableView.reloadData()
+                }
             }
+        }else {
+            ErrorHandler.handleErrorWith(error: error ?? .ErrorInFetchingDataFromServer, viewController: self)
         }
+        
         
     }
 }

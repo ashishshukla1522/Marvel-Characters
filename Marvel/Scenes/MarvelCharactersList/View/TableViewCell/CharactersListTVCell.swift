@@ -12,7 +12,7 @@ class CharactersListTVCell: UITableViewCell {
     @IBOutlet weak var characterNameLabel: UILabel!
     @IBOutlet weak var characterDescriptionLabel: UILabel!
     class var identifier: String { return String(describing: self) }
-
+    
     var cellViewModel : CharactersListCellViewModel? {
         didSet {
             self.characterNameLabel.text = cellViewModel?.characterName
@@ -26,15 +26,15 @@ class CharactersListTVCell: UITableViewCell {
         
         // Initialization code
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
     
     override func layoutSubviews() {
         thumbnailImageView.setRadiusForSpecificCorners([.topLeft,.bottomLeft], radius: 10.0)
     }
-
+    
 }

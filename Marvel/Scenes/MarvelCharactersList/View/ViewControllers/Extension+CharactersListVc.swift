@@ -14,7 +14,7 @@ extension CharactersListVc {
         pagingManager.updateCurrentPagingInfo(currentOffSet: 0, totalDataCount: 0)
         
         charactersListViewModel.fetchCharactersList(offSet: 0)
-    
+        
         charactersListViewModel.reloadTableView = { [weak self] in
             DispatchQueue.main.async {
                 self?.charactersListTableView.reloadData()
@@ -40,22 +40,20 @@ extension CharactersListVc : UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let character = charactersListViewModel.marvelCharacterCellViewModels[indexPath.row]
-
-        if let thumbNailImage = imageManager.imageForKey(key: String(character.characterId ?? 0)) {
-            (cell as? CharactersListTVCell)?.thumbnailImageView.image = thumbNailImage
+        guard let characterURL = charactersListViewModel.marvelCharacterCellViewModels[indexPath.row].characterImageUrl else {
             return
         }
         
-        if let imagePath = character.characterImageUrl, let thumbnailUrl = URL(string: imagePath) {
-            imageManager.downloadImageFromUrl(url: thumbnailUrl) { image in
-                self.imageManager.saveImageInCache(image: image, forkey: String(character.characterId ?? 0))
+        if let thumbnailUrl = URL(string: characterURL) {
+            imageManager.getImageFrom(url: thumbnailUrl) { image, urlString in
+                self.imageManager.saveImageInCache(image: image, forkey: characterURL)
                 DispatchQueue.main.async {
-                    (cell as? CharactersListTVCell)?.thumbnailImageView.image = image
+                    if characterURL == urlString {
+                        (cell as? CharactersListTVCell)?.thumbnailImageView.image = image
+                    }
                 }
             }
         }
-        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -68,10 +66,18 @@ extension CharactersListVc : UITableViewDelegate,UITableViewDataSource {
 
 //MARK: ViewModel Delegate
 extension CharactersListVc : CharactersListViewModelDelegate {
-    func didRecieveCharactersList(response: CharactersListResponse) {
-        
-        charactersListViewModel.currentOffset = response.data?.offset
-        charactersListViewModel.limit = response.data?.total
+    
+    func didRecieveCharactersList(response: CharactersListResponse?, error: ErrorType?) {
+        if error == nil {
+            populateDataToThUI(responseData: response!)
+        }else {
+            ErrorHandler.handleErrorWith(error: error ?? .ErrorInFetchingDataFromServer, viewController: self)
+        }
+    }
+    
+    private func populateDataToThUI(responseData:CharactersListResponse) {
+        charactersListViewModel.currentOffset = responseData.data?.offset
+        charactersListViewModel.limit = responseData.data?.total
         
         charactersListViewModel.reloadTableView = { [weak self] in
             DispatchQueue.main.async {
@@ -80,8 +86,8 @@ extension CharactersListVc : CharactersListViewModelDelegate {
             }
         }
         pagingManager.updateCurrentPagingInfo(currentOffSet: charactersListViewModel.currentOffset ?? 0, totalDataCount: charactersListViewModel.limit ?? 0)
-        print(response)
     }
+    
 }
 
 //MARK: UIScrollView Delegate Methods
