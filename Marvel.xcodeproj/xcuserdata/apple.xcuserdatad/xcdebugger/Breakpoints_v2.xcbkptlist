@@ -36,5 +36,69 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FE273F7C-9862-4BB9-B099-110D0686E49B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MarvelTests/ViewModels/ComicListViewModelUnitTest.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "didRecieveComicsList(response:error:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "FE273F7C-9862-4BB9-B099-110D0686E49B - f1cb126fc621310c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MarvelTests.ComicListViewModelUnitTest.didRecieveComicsList(response: Swift.Optional&lt;Marvel.ComicListResponse&gt;, error: Swift.Optional&lt;Marvel.ErrorType&gt;) -&gt; ()"
+                  moduleName = "MarvelTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/apple/Desktop/MarveGitHub/Marvel-Characters/MarvelTests/ViewModels/ComicListViewModelUnitTest.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "24"
+                  endingLineNumber = "24"
+                  offsetFromSymbolStart = "531">
+               </Location>
+               <Location
+                  uuid = "FE273F7C-9862-4BB9-B099-110D0686E49B - f1cb126fc621310c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MarvelTests.ComicListViewModelUnitTest.didRecieveComicsList(response: Swift.Optional&lt;Marvel.ComicListResponse&gt;, error: Swift.Optional&lt;Marvel.ErrorType&gt;) -&gt; ()"
+                  moduleName = "MarvelTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/apple/Desktop/MarveGitHub/Marvel-Characters/MarvelTests/ViewModels/ComicListViewModelUnitTest.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "24"
+                  endingLineNumber = "24"
+                  offsetFromSymbolStart = "571">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "41A63AE3-8719-45D8-A257-E12C2B3A85F6"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MarvelTests/ViewModels/ComicListViewModelUnitTest.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
+            landmarkName = "testComicList_With_ValidParametres_Returns_ValidResults()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

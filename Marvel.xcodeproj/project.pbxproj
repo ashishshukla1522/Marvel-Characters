@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		188E361527E1F0EF0049E41F /* ComicListViewModelUnitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188E361427E1F0EF0049E41F /* ComicListViewModelUnitTest.swift */; };
+		188E361727E1F3230049E41F /* CharactersListViewModelUnitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188E361627E1F3230049E41F /* CharactersListViewModelUnitTest.swift */; };
+		188E361927E1F9820049E41F /* ErrorHandlerUnitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188E361827E1F9820049E41F /* ErrorHandlerUnitTest.swift */; };
 		18A932E627DB59A700706D25 /* MD5KeyRetriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A932E527DB59A600706D25 /* MD5KeyRetriver.swift */; };
 		18ACA2ED27DF45C500008A1D /* Extension+CharacterDetailVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18ACA2EC27DF45C500008A1D /* Extension+CharacterDetailVc.swift */; };
 		18ACA2EF27DF507400008A1D /* ComicsListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18ACA2EE27DF507400008A1D /* ComicsListResponse.swift */; };
@@ -73,6 +76,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		188E361427E1F0EF0049E41F /* ComicListViewModelUnitTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicListViewModelUnitTest.swift; sourceTree = "<group>"; };
+		188E361627E1F3230049E41F /* CharactersListViewModelUnitTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersListViewModelUnitTest.swift; sourceTree = "<group>"; };
+		188E361827E1F9820049E41F /* ErrorHandlerUnitTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandlerUnitTest.swift; sourceTree = "<group>"; };
 		18A932E527DB59A600706D25 /* MD5KeyRetriver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MD5KeyRetriver.swift; sourceTree = "<group>"; };
 		18ACA2EC27DF45C500008A1D /* Extension+CharacterDetailVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+CharacterDetailVc.swift"; sourceTree = "<group>"; };
 		18ACA2EE27DF507400008A1D /* ComicsListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicsListResponse.swift; sourceTree = "<group>"; };
@@ -150,6 +156,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		188E361327E1F0C70049E41F /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				188E361427E1F0EF0049E41F /* ComicListViewModelUnitTest.swift */,
+				188E361627E1F3230049E41F /* CharactersListViewModelUnitTest.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		18B496E127E0A94100C50340 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -166,6 +181,7 @@
 				18B496EA27E0AF7400C50340 /* URLRetrieverUnitTest.swift */,
 				18B496EC27E0B1D500C50340 /* HTTPUtilityUnitTest.swift */,
 				18B496F727E0C31E00C50340 /* PagingManagerUnitTest.swift */,
+				188E361827E1F9820049E41F /* ErrorHandlerUnitTest.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -222,6 +238,7 @@
 				18BEDF8B27D8DFA600245155 /* MarvelTests.swift */,
 				18B496E127E0A94100C50340 /* Services */,
 				18B496E927E0AF0800C50340 /* Network */,
+				188E361327E1F0C70049E41F /* ViewModels */,
 				18B496F027E0BFE500C50340 /* ViewControllers */,
 			);
 			path = MarvelTests;
@@ -600,9 +617,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				188E361727E1F3230049E41F /* CharactersListViewModelUnitTest.swift in Sources */,
+				188E361527E1F0EF0049E41F /* ComicListViewModelUnitTest.swift in Sources */,
 				18B496ED27E0B1D500C50340 /* HTTPUtilityUnitTest.swift in Sources */,
 				18BEDF8C27D8DFA600245155 /* MarvelTests.swift in Sources */,
 				18B496E327E0A94100C50340 /* CharactersListAPIUnitTest.swift in Sources */,
+				188E361927E1F9820049E41F /* ErrorHandlerUnitTest.swift in Sources */,
 				18B496F627E0C25C00C50340 /* CharacterDetailVcUnitTest.swift in Sources */,
 				18B496E527E0A95C00C50340 /* ComicListsAPIUnitTest.swift in Sources */,
 				18B496F827E0C31E00C50340 /* PagingManagerUnitTest.swift in Sources */,

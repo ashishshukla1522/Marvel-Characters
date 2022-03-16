@@ -17,12 +17,4 @@ class MD5KeyRetriver {
         guard let data = source.data(using: .utf8) else { return nil }
         return Insecure.MD5.hash(data: data).map { String(format: "%02hhx", $0) }.joined()
     }
-    
-    func getCurrentTimeStamp() -> Int64 {
-        
-        return Int64(NSDate().timeIntervalSince1970 * 1000)
-    }
-    
-    
-    
 }
